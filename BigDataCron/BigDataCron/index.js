@@ -47,6 +47,7 @@ const publishEventToSNS = (events) => {
   console.log(events)
   snsPayload.Message.default = JSON.stringify(events)
   snsPayload.Message = JSON.stringify(snsPayload.Message)
+  console.log(snsPayload.Message)
   sns.publish(snsPayload, (err, res) => {
     if (err) {
       console.log(err)
