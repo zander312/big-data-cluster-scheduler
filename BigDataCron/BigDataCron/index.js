@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
     .then((res) => {
       return res.data
     })
-    .then(checkScheduleForEvent)
+    .then(checkScheduleForEvents)
     .then(publishEventToSNS)
 
   callback();
@@ -29,23 +29,23 @@ const axiosConfig = {
 }
 
 //check teamup schedule for event 
-const checkScheduleForEvent = (data) => {
+const checkScheduleForEvents = (data) => {
   return new Promise((resolve, reject) => {
     const now = moment()
-    data.events.map((event) => {
-      if (now > moment(event.start_dt) && now < moment(event.end_dt)) {
-        resolve(event)
-      }
-      else {
-        resolve(false)
+    let events = []
+    data.events.map((block) => {
+      if (now > moment(block.start_dt) && now < moment(block.end_dt)) {
+        events.push(block)
       }
     })
+    resolve(events)
   })
 }
 
 //publish to SNS
-const publishEventToSNS = (event) => {
-  snsPayload.Message.default = JSON.stringify(event)
+const publishEventToSNS = (events) => {
+  console.log(events)
+  snsPayload.Message.default = JSON.stringify(events)
   snsPayload.Message = JSON.stringify(snsPayload.Message)
   sns.publish(snsPayload, (err, res) => {
     if (err) {
