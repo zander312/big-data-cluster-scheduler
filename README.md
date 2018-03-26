@@ -18,10 +18,14 @@
         
 ```
 
+## Overview
+
 The MicroStrategy Big Data Bot is used to automate big data clusters.
 
 This series of lambda functions pulls scheduling data for the big data clusters from a teamup user interface.
 The ingestion of this data is achieved using the teamup rest API.
+
+## Lambdas
 
 BigDataCron
 - constantly polls teamup for scheduling updates
