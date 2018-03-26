@@ -1,26 +1,8 @@
 {
     "BigDataOrchestrator": {
-        "lambda": {
-            "Records": [
-                {
-                    "EventSource": "aws:sns",
-                    "EventVersion": "1.0",
-                    "EventSubscriptionArn": "arn:aws:sns:us-east-1:338194504807:big-data-cluster-443:4c061b18-ac9c-4297-bbef-4ee0cf3a1ee3",
-                    "Sns": {
-                        "Type": "Notification",
-                        "MessageId": "fcff7232-6502-5a5a-85a9-21184c3368cb",
-                        "TopicArn": "arn:aws:sns:us-east-1:338194504807:big-data-cluster-443",
-                        "Subject": null,
-                        "Message": "{\"id\":\"177432278\",\"series_id\":null,\"remote_id\":null,\"subcalendar_id\":4734111,\"subcalendar_ids\":[4734111],\"all_day\":false,\"rrule\":\"\",\"title\":\"\",\"who\":\"\",\"location\":\"\",\"notes\":null,\"version\":\"5ab0228769a99\",\"readonly\":false,\"tz\":null,\"start_dt\":\"2018-03-19T09:00:00-04:00\",\"end_dt\":\"2018-03-19T19:00:00-04:00\",\"ristart_dt\":null,\"rsstart_dt\":null,\"creation_dt\":\"2018-03-19T16:34:18-04:00\",\"update_dt\":\"2018-03-19T16:50:15-04:00\",\"delete_dt\":null,\"custom\":{}}",
-                        "Timestamp": "2018-03-19T21:09:05.076Z",
-                        "SignatureVersion": "1",
-                        "Signature": "AWuajY0tjRZDKfl6/ZdnjHHHQPNNNcSc/awPBAvEflLWgQxpgljCI/MINbRohMaWUCK3bZQ7Q7tiYToW1qxz9VKbGrjCbwLMtiNF64yIrXTrng6qr80CczuLECD9f2aV8EPdLyuB0ovHXgI8WU/AbQp1tkAiAileKbw07wzLMMtwE9tXDg6lcOkk8J4vEzpbP9laD/Rv74/LXDMgTHDjFIwe02EC8fZzGPARBWELOqgH4mpitgUDOU9vmoOiFXvmm7KfqSLsjM6MYaS5rTD294WZWpNxw3CyloUvw4RrlpeRNUcEPNDg+hd5cd6z+zP+wwCr91dvN6gFmL3yKNMBvA==",
-                        "SigningCertUrl": "https://sns.us-east-1.amazonaws.com/SimpleNotificationService-433026a4050d206028891664da859041.pem",
-                        "UnsubscribeUrl": "https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:338194504807:big-data-cluster-443:4c061b18-ac9c-4297-bbef-4ee0cf3a1ee3",
-                        "MessageAttributes": {}
-                    }
-                }
-            ]
-        }
+        "lambda": {}
+    },
+    "BigDataCron": {
+        "lambda": {}
     }
 }

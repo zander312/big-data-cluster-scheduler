@@ -1,5 +1,8 @@
 {
     "BigDataCron": {
         "lambda": {}
+    },
+    "BigDataOrchestrator": {
+        "lambda": {}
     }
 }

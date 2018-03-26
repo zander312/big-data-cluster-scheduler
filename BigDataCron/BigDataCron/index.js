@@ -3,15 +3,17 @@ const axios = require('axios')
 const moment = require('moment')
 const AWS = require('aws-sdk')
 const sns = new AWS.SNS()
+const lambda = new AWS.Lambda()
 
 exports.handler = (event, context, callback) => {
 
   axios(axiosConfig)
     .then((res) => {
+      console.log("retrieving teamup data")
       return res.data
     })
     .then(checkScheduleForEvents)
-    .then(publishEventToSNS)
+    .then(invokeBigDataOrchestrator)
 
   callback();
 }
@@ -42,24 +44,20 @@ const checkScheduleForEvents = (data) => {
   })
 }
 
-//publish to SNS
-const publishEventToSNS = (events) => {
+const invokeBigDataOrchestrator = (events) => {
   console.log(events)
-  snsPayload.Message.default = JSON.stringify(events)
-  snsPayload.Message = JSON.stringify(snsPayload.Message)
-  console.log(snsPayload.Message)
-  sns.publish(snsPayload, (err, res) => {
-    if (err) {
-      console.log(err)
-    }
+  let payload = JSON.stringify(events)
+  lambdaParams.Payload = JSON.stringify({ data: events })
+  lambda.invoke(lambdaParams, (err, data) => {
+    if (err) { console.log(err) }
     else {
-      console.log(res)
+      console.log("invoking orchestrator lambda")
+      console.log(data)
     }
   })
 }
 
-let snsPayload = {
-  "Message": { "default": "test" },
-  "MessageStructure": 'json',
-  "TargetArn": ENV.parsed.SNS_TOPIC_ARN
-}
+var lambdaParams = {
+  FunctionName: "arn:aws:lambda:us-east-1:338194504807:function:cloud9-BigDataOrchestrator-BigDataOrchestrator-1L2WIF1OGQN3V",
+  LogType: "Tail"
+};
