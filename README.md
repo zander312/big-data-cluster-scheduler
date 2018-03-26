@@ -1,3 +1,4 @@
+```
  __  __ _                _____ _             _                   
 |  \/  (_)              / ____| |           | |                  
 | \  / |_  ___ _ __ ___| (___ | |_ _ __ __ _| |_ ___  __ _ _   _ 
@@ -15,6 +16,7 @@
           __/ |                                          
          |___/                                           
         
+```
 
 The MicroStrategy Big Data Bot is used to automate big data clusters.
 
