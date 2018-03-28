@@ -72,22 +72,24 @@ const startTaxi = () => {
       console.log(data.StartingInstances[0].CurrentState)
     }
   })
-  serviceMap.map((service) => {
-    axios({
-        url: `http://${ENV.parsed.TEST_TAXIHDP_HOSTNAME}:8080/api/v1/clusters/${ENV.parsed.TEST_TAXIHDP_CLUSTERNAME}/services/${service}/`,
-        method: 'put',
-        headers: { 'X-Requested-By': 'ambari' },
-        auth: {
-          username: ENV.parsed.AMBARI_USER,
-          password: ENV.parsed.AMBARI_PASS
-        },
-        data: '{"RequestInfo": {"context" :"Start service"}, "Body": {"ServiceInfo": {"state": "STARTED"}}}'
-      })
-      .then((res) => {
-        console.log(`starting taxihdp ambari service: ${service}`)
-        console.log(res.data)
-      })
-  })
+  axios({
+      url: `http://${ENV.parsed.TAXIHDP_HOSTNAME}:8080/api/v1/clusters/${ENV.parsed.TAXIHDP_CLUSTERNAME}/services`,
+      method: 'put',
+      headers: { 'X-Requested-By': 'ambari' },
+      auth: {
+        username: ENV.parsed.AMBARI_USER,
+        password: ENV.parsed.AMBARI_PASS
+      },
+      data: `{"RequestInfo":{"context":"_PARSE_.START.ALL_SERVICES","operation_level":{"level":"CLUSTER","cluster_name":"${ENV.parsed.TAXIHDP_CLUSTERNAME}"}},"Body":{"ServiceInfo":{"state":"STARTED"}}}`
+    })
+    .then((res) => {
+      console.log("starting taxihdp services")
+      console.log(res.data)
+    })
+    .catch((err) => {
+      console.log("error starting taxihdp services")
+      console.log(err.response.data)
+    })
 }
 
 // start hgos cluster (test)
@@ -109,19 +111,6 @@ const clusterMap = {
   "4734111": ["i-0ee369bc32405a067", "i-01974cd0004d386f0", "i-0a71c821deec99cab", "i-0aa503cf730e2b848", "i-0ed1b109bcfe83a8c"],
   "4734113": ["i-0f317179009ab8bad"]
 }
-
-// ambari services that should be started
-const serviceMap = [
-  'HDFS',
-  'YARN',
-  'MAPREDUCE2',
-  'HIVE',
-  'ZOOKEEPER',
-  'SPARK',
-  'ZEPPELIN',
-  'AMBARI_INFRA',
-  'AMBARI_METRICS',
-]
 
 // payloads
 const payloadOne = [{
