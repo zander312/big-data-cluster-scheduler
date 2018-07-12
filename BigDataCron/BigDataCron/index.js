@@ -60,4 +60,4 @@ const invokeBigDataOrchestrator = (events) => {
 var lambdaParams = {
   FunctionName: "arn:aws:lambda:us-east-1:338194504807:function:cloud9-BigDataOrchestrator-BigDataOrchestrator-1L2WIF1OGQN3V",
   LogType: "Tail"
-};
+}
