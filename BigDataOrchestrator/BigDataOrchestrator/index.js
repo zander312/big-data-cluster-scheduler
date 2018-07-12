@@ -45,7 +45,7 @@ const stopClusters = (scheduledClusters) => {
       ec2.stopInstances({
         InstanceIds: clusterMap[cluster],
         DryRun: false
-      }, function(err, data) {
+      }, (err, data) => {
         if (err) console.log(err, err.stack)
         else {
           console.log(`stopping cluster ${cluster}`)
@@ -61,7 +61,7 @@ const startTaxi = () => {
   ec2.startInstances({
     InstanceIds: clusterMap["4734111"],
     DryRun: false
-  }, function(err, data) {
+  }, (err, data) => {
     if (err) console.log(err, err.stack)
     else {
       console.log("starting taxihdp ec2 instances")
@@ -93,7 +93,7 @@ const startHgos = () => {
   ec2.startInstances({
     InstanceIds: clusterMap["4734113"],
     DryRun: false
-  }, function(err, data) {
+  }, (err, data) => {
     if (err) console.log(err, err.stack)
     else {
       console.log("starting hgos ec2 instances")
