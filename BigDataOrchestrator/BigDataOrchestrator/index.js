@@ -38,7 +38,7 @@ const startClusters = (clusters) => {
   })
 }
 
-// stop cluster
+// stop clusters
 const stopClusters = (scheduledClusters) => {
   Object.keys(clusterMap).map((cluster) => {
     if (!scheduledClusters.includes(cluster)) {
@@ -88,7 +88,7 @@ const startTaxi = () => {
     })
 }
 
-// start taxi cluster
+// start hgos cluster
 const startHgos = () => {
   ec2.startInstances({
     InstanceIds: clusterMap["4734113"],
